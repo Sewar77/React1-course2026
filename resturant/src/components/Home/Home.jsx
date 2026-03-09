@@ -3,13 +3,7 @@ function Home() {
   const location = useLocation();
   const { name } = location.state || "no name";
   //child component
-  return (
-    <>
-      <h1>this is home page</h1>
-      <p>props</p>
-      {name}
-    </>
-  );
+  return <></>;
 }
 export default Home;
 //passing props

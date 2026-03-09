@@ -1,0 +1,11 @@
+.about-container {
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.about-container h1 {
+  font-weight: bold;
+  font-size: 6rem;
+}
