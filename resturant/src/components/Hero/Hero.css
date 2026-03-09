@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.container img {
+  width: 100%;
+  display: block;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  font-size: 6rem;
+  overflow: hidden;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(23, 21, 21, 0.733);
+}
