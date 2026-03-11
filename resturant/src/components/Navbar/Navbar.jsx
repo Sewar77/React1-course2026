@@ -1,8 +1,9 @@
 import React from "react";
 import "./Navbar.css";
+import Theme from "../../Theme/Theme.jsx";
 function Navbar() {
   return (
-    <nav className="nav">
+    <nav className="nav" id="navbar">
       <div className="logo">
         <h2> Pizza</h2>
       </div>
@@ -19,6 +20,9 @@ function Navbar() {
         </li>
         <li>
           <a href="#">Menu</a>
+        </li>
+        <li>
+          <Theme />
         </li>
       </ul>
     </nav>
