@@ -10,12 +10,24 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../../context/CartContext.jsx";
 
-function MenuCard({ name, description, image, price, quantity }) {
+function MenuCard({ id, name, description, image, price, quantity }) {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [userQuantity, setUserQuantity] = useState(quantity || 1);
+  const item = {
+    id,
+    name,
+    description,
+    image,
+    price,
+    quantity,
+  };
+  console.log("item:", item);
+  const { addToCart } = useContext(CartContext);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -87,7 +99,12 @@ function MenuCard({ name, description, image, price, quantity }) {
 
             <Typography variant="h6">{userQuantity}</Typography>
 
-            <Button variant="contained" onClick={increaseQuantity}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                addToCart(item);
+              }}
+            >
               +
             </Button>
           </Box>
