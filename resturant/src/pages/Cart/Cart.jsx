@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import DisplayCart from "../../components/Menu/Cart/DisplayCart";
 import Navbar from "../../components/Navbar/Navbar";
-
+import Footer from "../../components/Layout/Footer.jsx";
 function Cart() {
   return (
     <>
@@ -10,6 +10,7 @@ function Cart() {
         My Cart
       </Typography>
       <DisplayCart />
+      <Footer />
     </>
   );
 }
