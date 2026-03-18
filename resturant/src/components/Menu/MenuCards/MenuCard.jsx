@@ -17,7 +17,7 @@ function MenuCard({ id, name, description, image, price, quantity }) {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-  const [userQuantity, setUserQuantity] = useState(quantity || 1);
+  const [userQuantity, setUserQuantity] = useState(0);
   const item = {
     id,
     name,
@@ -26,21 +26,15 @@ function MenuCard({ id, name, description, image, price, quantity }) {
     price,
     quantity,
   };
-  console.log("item:", item);
-  const { addToCart } = useContext(CartContext);
+  const { cart, addToCart } = useContext(CartContext);
+
+  const addQuantity = () => {
+    setUserQuantity((q) => q + 1);
+    addToCart({ item, userQuantity });
+  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const increaseQuantity = () => {
-    setUserQuantity(userQuantity + 1);
-  };
-
-  const decreaseQuantity = () => {
-    if (userQuantity > 1) {
-      setUserQuantity(userQuantity - 1);
-    }
-  };
 
   return (
     <>
@@ -93,16 +87,14 @@ function MenuCard({ id, name, description, image, price, quantity }) {
           <Box
             sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 2 }}
           >
-            <Button variant="contained" onClick={decreaseQuantity}>
-              -
-            </Button>
+            <Button variant="contained">-</Button>
 
             <Typography variant="h6">{userQuantity}</Typography>
 
             <Button
               variant="contained"
               onClick={() => {
-                addToCart(item);
+                addQuantity();
               }}
             >
               +

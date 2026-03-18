@@ -11,7 +11,7 @@ function MenuList() {
       description: "Classic pizza with fresh mozzarella, tomatoes, and basil.",
       image: "./src/assets/pizza1.jpg",
       price: 10.99,
-      quantity: 10,
+      quantity: 10, //quantity for the resturant itself. 
     },
     {
       id: 2,
