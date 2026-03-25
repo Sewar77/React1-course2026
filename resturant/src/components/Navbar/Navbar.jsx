@@ -4,7 +4,7 @@ import Theme from "../../Theme/Theme.jsx";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 function Navbar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <nav className="nav" id="navbar">
       <div className="logo">
@@ -24,11 +24,17 @@ function Navbar() {
         <li>
           <a href="#">Menu</a>
         </li>
+
         <li>
           <Button onClick={() => navigate("/cart")}>Cart</Button>
         </li>
         <li>
           <Theme />
+        </li>
+        <li>
+          <Button variant="contained" onClick={() => navigate("/register")}>
+            Register
+          </Button>
         </li>
       </ul>
     </nav>
