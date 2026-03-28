@@ -8,9 +8,10 @@ function Theme() {
   useEffect(() => {
     localStorage.getItem("theme");
 
-    document.body.style.backgroundColor = theme === "light" ? "#fff" : "Navy";
+    document.body.style.backgroundColor =
+      theme === "light" ? "#fff" : "SlateGrey";
 
-    document.body.style.color = theme === "light" ? "Navy" : "LavenderBlush";
+    document.body.style.color = theme === "light" ? "black" : "OldLace";
   }, [theme]);
 
   const handleSwtchMode = () => {
