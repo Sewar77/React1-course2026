@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext.jsx";
-
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext.jsx";
 function MenuCard({ id, name, description, image, price, quantity }) {
   const navigate = useNavigate();
-
+  const { currentUser } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const [userQuantity, setUserQuantity] = useState(0);
   const item = {
@@ -35,7 +35,7 @@ function MenuCard({ id, name, description, image, price, quantity }) {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const handleEdit = () => {};
   return (
     <>
       <Card sx={{ maxWidth: 345, textAlign: "center", alignItems: "center" }}>
@@ -59,9 +59,21 @@ function MenuCard({ id, name, description, image, price, quantity }) {
             View
           </Button>
 
-          <Button size="small" onClick={handleOpen}>
-            Add To Cart
-          </Button>
+          {currentUser?.role === "user" && (
+            <Button size="small" onClick={handleOpen}>
+              Add To Cart
+            </Button>
+          )}
+          {currentUser?.role === "admin" && (
+            <>
+              <Button size="small" onClick={handleEdit}>
+                Edit Item
+              </Button>
+              <Button size="small" onClick={handleEdit}>
+                Delete Item
+              </Button>
+            </>
+          )}
         </CardActions>
       </Card>
 

@@ -8,6 +8,7 @@ import Register from "./components/Auth/Register.jsx";
 import Login from "./components/Auth/Login.jsx";
 import UserDashboardPage from "./pages/User/UserDahshboardPage.jsx";
 import AdminDashboard from "./components/Admin/AdminDashboard.jsx";
+import ManageMenu from "./components/Admin/Manage/Menu/ManageMenu.jsx";
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/user-dashboard" element={<UserDashboardPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/manage/menu" element={<ManageMenu />} />
       </Routes>
     </>
   );

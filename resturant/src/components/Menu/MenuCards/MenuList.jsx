@@ -1,9 +1,12 @@
 import { Container, Typography } from "@mui/material";
 import { Grid } from "@mui/system";
 import MenuCard from "./MenuCard";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
+
 //parent for menucard
 function MenuList() {
-  //fake data
+  const { currentUser } = useContext(UserContext);
   const pizzaMenu = [
     {
       id: 1, //unique value
@@ -11,7 +14,7 @@ function MenuList() {
       description: "Classic pizza with fresh mozzarella, tomatoes, and basil.",
       image: "./src/assets/pizza1.jpg",
       price: 10.99,
-      quantity: 10, //quantity for the resturant itself. 
+      quantity: 10, //quantity for the resturant itself.
     },
     {
       id: 2,
@@ -48,12 +51,21 @@ function MenuList() {
       quantity: 10,
     },
   ];
+  let storedMenu = JSON.parse(localStorage.getItem("menu"));
+  if (!storedMenu || storedMenu.length === 0) {
+    localStorage.setItem("menu", JSON.stringify(pizzaMenu));
+    storedMenu = pizzaMenu;
+  }
+  //fake data
+
   return (
     <>
       <Container sx={{ py: 6 }}>
-        <Typography variant="h1">Pizza Menu</Typography>
+        {currentUser?.role === "user" && (
+          <Typography variant="h1">Pizza Menu</Typography>
+        )}
         <Grid container spacing={6} alignItems="center" textAlign="center">
-          {pizzaMenu.map((pizza) => {
+          {storedMenu.map((pizza) => {
             return (
               <Grid key={pizza.id}>
                 <MenuCard
