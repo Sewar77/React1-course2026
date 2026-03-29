@@ -7,6 +7,7 @@ import Cart from "./pages/Cart/Cart.jsx";
 import Register from "./components/Auth/Register.jsx";
 import Login from "./components/Auth/Login.jsx";
 import UserDashboardPage from "./pages/User/UserDahshboardPage.jsx";
+import AdminDashboard from "./components/Admin/AdminDashboard.jsx";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user-dashboard" element={<UserDashboardPage />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </>
   );

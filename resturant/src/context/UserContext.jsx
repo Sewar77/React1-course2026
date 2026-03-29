@@ -35,10 +35,12 @@ export const UserProvider = ({ children }) => {
       return;
     }
     //role based access => rba =>
+    //if user role is admin, go to admin dashboard, and if user role is user go to user dashboadr
     toast.success("Login Successfully!");
     setCurrentUser(isExist);
     localStorage.setItem("currentUser", JSON.stringify(isExist));
-    navigate("/user-dashboard");
+    if (isExist.role === "user") navigate("/user-dashboard");
+    if (isExist.role === "admin") navigate("/admin/dashboard");
   }; //task
 
   const logout = () => {
@@ -77,7 +79,7 @@ export const UserProvider = ({ children }) => {
       name: formData.name,
       email: formData.email,
       password: formData.password,
-      role: "user", //user/manager
+      role: "user", //user/admin
     };
     const updatedUsers = [...allUsers, newUser]; //updated users is a new ARRAY containes all old users and the new user
 
