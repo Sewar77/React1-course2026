@@ -10,7 +10,9 @@ import UserDashboardPage from "./pages/User/UserDahshboardPage.jsx";
 import AdminDashboard from "./components/Admin/AdminDashboard.jsx";
 import ManageMenu from "./components/Admin/Manage/Menu/ManageMenu.jsx";
 import MenuListPage from "./pages/Menu/MenuListPage.jsx";
+import ManageUserPage from "./pages/Admin/Manage/Users/ManageUserPage.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
+//display all pages
 function App() {
   return (
     <>
@@ -27,6 +29,7 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/manage/menu" element={<ManageMenu />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/manage/users" element={<ManageUserPage />} />
       </Routes>
     </>
   );

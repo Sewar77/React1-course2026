@@ -63,6 +63,7 @@ function Sidebar({ open, toggleSidebar }) {
                 <ListItemText
                   sx={{ cursor: "pointer" }}
                   primary={open ? "Users" : "U"}
+                  onClick={() => navigate("/manage/users")}
                 />
               </ListItem>
               <ListItem button>
@@ -117,5 +118,4 @@ function Sidebar({ open, toggleSidebar }) {
     </>
   );
 }
-
 export default Sidebar;

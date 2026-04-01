@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState(null); //all users in db/localstorage
+  const [users, setUsers] = useState([]); //all users in db/localstorage
   const [currentUser, setCurrentUser] = useState(null); //user who logged in, it may be null
   const navigate = useNavigate();
   useEffect(() => {

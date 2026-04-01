@@ -1,7 +1,7 @@
 import { Box, Button, Card, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext.jsx";
-
+//display user info
 function Profile() {
   const { currentUser } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -33,6 +33,10 @@ function Profile() {
             Name: {currentUser?.name}
           </Typography>
           <Typography variant="h4"> Email: {currentUser?.email}</Typography>
+          <Typography sx={{ mt: 3 }} variant="h4">
+            {" "}
+            Role: {currentUser?.role}
+          </Typography>
           <Box
             sx={{
               display: "block",
