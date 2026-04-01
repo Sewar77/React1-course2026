@@ -50,15 +50,15 @@ function Sidebar({ open, toggleSidebar }) {
         )}
         <Divider sx={{ bgcolor: "white", mb: 2 }} />
         <List>
-          <ListItem button component="div">
-            <ListItemText
-              sx={{ cursor: "pointer" }}
-              onClick={() => navigate("/admin/dashboard")}
-              primary={open ? "Dashboard" : "D"}
-            />
-          </ListItem>
           {currentUser?.role === "admin" && (
             <>
+              <ListItem button component="div">
+                <ListItemText
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/admin/dashboard")}
+                  primary={open ? "Dashboard" : "D"}
+                />
+              </ListItem>
               <ListItem button>
                 <ListItemText
                   sx={{ cursor: "pointer" }}
@@ -76,6 +76,13 @@ function Sidebar({ open, toggleSidebar }) {
           )}
           {currentUser?.role === "user" && (
             <>
+              <ListItem button component="div">
+                <ListItemText
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/user-dashboard")}
+                  primary={open ? "Dashboard" : "D"}
+                />
+              </ListItem>
               <ListItem button>
                 <ListItemText
                   sx={{ cursor: "pointer" }}
@@ -86,6 +93,7 @@ function Sidebar({ open, toggleSidebar }) {
                 <ListItemText
                   sx={{ cursor: "pointer" }}
                   primary={open ? "View Menu" : "M"}
+                  onClick={() => navigate("/view-menu")}
                 />
               </ListItem>
             </>
@@ -94,6 +102,7 @@ function Sidebar({ open, toggleSidebar }) {
             <ListItemText
               sx={{ cursor: "pointer" }}
               primary={open ? "Profile" : "P"}
+              onClick={() => navigate("/profile")}
             />
           </ListItem>
           <ListItem button>
