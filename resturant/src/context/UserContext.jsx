@@ -90,9 +90,19 @@ export const UserProvider = ({ children }) => {
     return;
   };
   const displayAllUsers = () => {}; //next time, in admin dashboard!
+
+  const deleteUser = (userId) => {
+    //userId = 1774691552163
+    //when use filter to delete => !== .
+    const existedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = existedUsers.filter((user) => userId !== user.id); //the new array without the userId
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    setUsers(updatedUsers);
+    toast.success("deleted successfully");
+  };
   return (
     <UserContext.Provider
-      value={{ register, users, login, currentUser, logout }}
+      value={{ register, users, login, currentUser, logout, deleteUser }}
     >
       {children}
     </UserContext.Provider>
