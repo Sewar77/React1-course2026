@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Paper,
   Stack,
   Table,
   TableBody,
@@ -15,7 +16,18 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../../../context/UserContext.jsx";
 import toast from "react-hot-toast";
 function ManageUsers() {
-  const { users, deleteUser, updateUser } = useContext(UserContext);
+  const { users, deleteUser, updateUser, addNewUser } = useContext(UserContext);
+  const [openForm, setOpenForm] = useState(false);
+  const [newUser, setNewUser] = useState({
+    name: "",
+    email: "",
+    role: "",
+    password: "",
+  });
+  const handleAddUser = () => {
+    addNewUser(newUser);
+    setOpenForm(false);
+  };
   const [updateId, setUpdateId] = useState(null);
   // condition ? "do this if teh condition tru" : "do this if the condition false"
   const [updatedUser, setUpdatedUser] = useState({
@@ -46,9 +58,66 @@ function ManageUsers() {
         >
           Manage Users
         </Typography>
+        <Button
+          variant="contained"
+          color="warning"
+          onClick={() => setOpenForm(!openForm)}
+        >
+          {openForm ? "Cancel" : "Add New User"}
+        </Button>
         <Container>
           {/* display all users */}
-
+          {openForm && (
+            <>
+              <Paper
+                elevation={2}
+                sx={{
+                  p: 3,
+                  m: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                }}
+              >
+                <TextField
+                  label="Name"
+                  value={newUser.name}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, name: e.target.value })
+                  }
+                />
+                <TextField
+                  label="Email"
+                  type="email"
+                  value={newUser.email}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, email: e.target.value })
+                  }
+                />
+                <TextField
+                  label="Role"
+                  value={newUser.role}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, role: e.target.value })
+                  }
+                />
+                <TextField
+                  label="Password"
+                  value={newUser.password}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, password: e.target.value })
+                  }
+                />
+                <Button
+                  variant="contained"
+                  color="info"
+                  onClick={handleAddUser}
+                >
+                  Add
+                </Button>
+              </Paper>
+            </>
+          )}
           <Table>
             <TableHead>
               <TableRow>

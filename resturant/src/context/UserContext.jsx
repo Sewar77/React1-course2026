@@ -113,7 +113,46 @@ export const UserProvider = ({ children }) => {
     setUsers(updatedUsers);
     toast.success("updated Successfully");
   };
+  const addNewUser = (userData) => {
+    const allowedRoles = ["user", "admin"];
+    if (
+      !userData.name ||
+      !userData.email ||
+      !userData.role ||
+      !userData.password
+    ) {
+      toast.error("all fields are required");
+      return;
+    }
+    if (!allowedRoles.includes(userData.role.toLowerCase())) {
+      toast.error("role must be user or admiin only!");
+      return;
+    }
+    if (userData.password.length < 8) {
+      toast.error("Password should be more than 8 charecters. ");
+      return;
+    }
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const isExist = allUsers.find((user) => user.email === userData.email);
+    if (isExist) {
+      toast.error("the email is already exist! ask user to login ");
+      return;
+    }
+    //create new user and stored them in users and lcoalstorage
+    const newUser = {
+      id: Date.now(),
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      role: userData.role.toLowerCase(),
+    };
+    const updatedUsers = [...allUsers, newUser]; //updated users is a new ARRAY containes all old users and the new user
 
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    toast.success("user created successfully, user can login");
+    setUsers(updateUser);
+    return;
+  };
   return (
     <UserContext.Provider
       value={{
@@ -124,6 +163,7 @@ export const UserProvider = ({ children }) => {
         logout,
         deleteUser,
         updateUser,
+        addNewUser,
       }}
     >
       {children}
