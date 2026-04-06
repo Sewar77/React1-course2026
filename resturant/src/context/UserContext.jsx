@@ -100,9 +100,31 @@ export const UserProvider = ({ children }) => {
     setUsers(updatedUsers);
     toast.success("deleted successfully");
   };
+
+  const updateUser = (userId, updatedData) => {
+    const existedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = existedUsers.map((user) => {
+      if (user.id === userId) {
+        return { ...user, ...updatedData };
+      }
+      return user;
+    });
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    setUsers(updatedUsers);
+    toast.success("updated Successfully");
+  };
+
   return (
     <UserContext.Provider
-      value={{ register, users, login, currentUser, logout, deleteUser }}
+      value={{
+        register,
+        users,
+        login,
+        currentUser,
+        logout,
+        deleteUser,
+        updateUser,
+      }}
     >
       {children}
     </UserContext.Provider>

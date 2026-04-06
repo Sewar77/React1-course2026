@@ -13,17 +13,24 @@ import {
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../../context/UserContext.jsx";
+import toast from "react-hot-toast";
 function ManageUsers() {
-  const { users, deleteUser } = useContext(UserContext);
-  console.log(users);
+  const { users, deleteUser, updateUser } = useContext(UserContext);
   const [updateId, setUpdateId] = useState(null);
-  console.log("updateId", updateId);
   // condition ? "do this if teh condition tru" : "do this if the condition false"
   const [updatedUser, setUpdatedUser] = useState({
     name: "",
     email: "",
     role: "",
   });
+  const handleSave = () => {
+    if (!updatedUser.name || !updatedUser.email || !updatedUser.role) {
+      toast.error("all fileds are required");
+      return;
+    }
+    updateUser(updateId, updatedUser);
+    setUpdateId(null);
+  };
   return (
     <>
       <Box
@@ -63,7 +70,7 @@ function ManageUsers() {
                       <TableCell>
                         <TextField
                           label="Name"
-                          value={user?.name || updatedUser.name}
+                          value={updatedUser.name}
                           onChange={(e) =>
                             setUpdatedUser({
                               ...updatedUser,
@@ -77,14 +84,32 @@ function ManageUsers() {
                       <TableCell>{user?.email}</TableCell>
                     ) : (
                       <TableCell>
-                        <TextField label="Email" value={user?.email} />
+                        <TextField
+                          label="Email"
+                          value={updatedUser.email}
+                          onChange={(e) =>
+                            setUpdatedUser({
+                              ...updatedUser,
+                              email: e.target.value,
+                            })
+                          }
+                        />
                       </TableCell>
                     )}
                     {updateId !== user.id ? (
                       <TableCell>{user?.role}</TableCell>
                     ) : (
                       <TableCell>
-                        <TextField label="Role" value={user?.role} />
+                        <TextField
+                          label="Role"
+                          value={updatedUser.role}
+                          onChange={(e) =>
+                            setUpdatedUser({
+                              ...updatedUser,
+                              role: e.target.value,
+                            })
+                          }
+                        />
                       </TableCell>
                     )}
                     {updateId !== user.id ? (
@@ -130,7 +155,11 @@ function ManageUsers() {
                           >
                             Cancel
                           </Button>
-                          <Button variant="contained" color="success">
+                          <Button
+                            variant="contained"
+                            color="success"
+                            onClick={handleSave}
+                          >
                             Save
                           </Button>
                         </Stack>
