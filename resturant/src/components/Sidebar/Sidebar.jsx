@@ -69,6 +69,13 @@ function Sidebar({ open, toggleSidebar }) {
               <ListItem button>
                 <ListItemText
                   sx={{ cursor: "pointer" }}
+                  primary={open ? "Messages" : "M"}
+                  onClick={() => navigate("/manage/messages")}
+                />
+              </ListItem>
+              <ListItem button>
+                <ListItemText
+                  sx={{ cursor: "pointer" }}
                   primary={open ? "Menu" : "M"}
                   onClick={() => navigate("/manage/menu")}
                 />

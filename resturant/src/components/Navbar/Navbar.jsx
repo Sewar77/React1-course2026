@@ -21,7 +21,7 @@ function Navbar() {
           <a href="#">Gallery</a>
         </li>
         <li>
-          <a href="#">Contact</a>
+          <Button onClick={() => navigate("/contact")}>Contact Us</Button>
         </li>
         <li>
           <a href="#">Menu</a>
@@ -54,9 +54,9 @@ function Navbar() {
           </>
         )}
 
-        <li>
+        {/* <li>
           <Theme />
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
