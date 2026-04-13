@@ -14,6 +14,7 @@ import ManageUserPage from "./pages/Admin/Manage/Users/ManageUserPage.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import ContactUs from "./pages/Contact/Contact.jsx";
 import Messages from "./pages/Admin/Manage/Messages/Messages.jsx";
+import FeedBacks from "./pages/Feedbacks/Feedbacks.jsx"
 //display all pages
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/manage/users" element={<ManageUserPage />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/feedbacks" element={<FeedBacks />} />
         <Route path="/manage/messages" element={<Messages />} />
       </Routes>
     </>

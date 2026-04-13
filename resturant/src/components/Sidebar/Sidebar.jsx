@@ -94,6 +94,13 @@ function Sidebar({ open, toggleSidebar }) {
               <ListItem button>
                 <ListItemText
                   sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/feedbacks")}
+                  primary={open ? "FeedBacks" : "F"}
+                />
+              </ListItem>
+              <ListItem button>
+                <ListItemText
+                  sx={{ cursor: "pointer" }}
                   primary={open ? "Cart" : "C"}
                 />
               </ListItem>

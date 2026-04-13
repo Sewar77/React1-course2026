@@ -11,11 +11,14 @@ export const MessageProvider = ({ children }) => {
       toast.error("name and message are required");
       return;
     }
-    const allMessages = localStorage.getItem("messages") || [];
+    //when get from localstorage (getitem) ==> parse
+    //when set in localstorage (setitem) ==> stringify
+    const allMessages = JSON.parse(localStorage.getItem("messages")) || [];
     const newMessage = {
       name: messageData.name,
       email: messageData.email,
       message: messageData.message,
+      state: "pending",
       id: Date.now(),
     };
     const newAllMessages = [...allMessages, newMessage];
